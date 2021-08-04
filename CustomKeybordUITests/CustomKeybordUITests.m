@@ -2,8 +2,8 @@
 //  CustomKeybordUITests.m
 //  CustomKeybordUITests
 //
-//  Created by Ketty on 2018/1/9.
-//  Copyright © 2018年 Ketty. All rights reserved.
+//  Created by King on 2018/1/9.
+//  Copyright © 2018年 King. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
