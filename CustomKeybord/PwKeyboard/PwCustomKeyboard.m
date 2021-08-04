@@ -81,13 +81,6 @@ static CGFloat keyY = 50;
 - (void)configKeyboardType
 {
     
-    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 140, 40)];
-    tipLabel.backgroundColor = [UIColor clearColor];
-    tipLabel.text = @"优车库安全键盘";
-    tipLabel.textColor = [UIColor blackColor];
-    tipLabel.font = [UIFont systemFontOfSize:18];
-    [self addSubview:tipLabel];
-    
     
     NSInteger btnTypeCount = 3;
     CGFloat btnWidth = (DeviceWidth/2)/btnTypeCount;
