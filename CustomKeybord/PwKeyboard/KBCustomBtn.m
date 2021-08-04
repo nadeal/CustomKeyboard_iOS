@@ -1,14 +1,14 @@
 //
-//  CustomButton.m
+//  KBCustomBtn.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/24.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/24.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
-#import "CustomButton.h"
+#import "KBCustomBtn.h"
 
-@implementation CustomButton
+@implementation KBCustomBtn
 {
     UILabel *_titleLabel;
     UILabel *_subTitleLabel;
@@ -24,7 +24,8 @@
 }
 - (void)configSubTitle
 {
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.frame.size.width, 20)];
+//    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.frame.size.width, 20)];
+    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.frame.size.width, 35)];
     [_titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:20]];
     _titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_titleLabel];

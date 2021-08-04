@@ -2,12 +2,12 @@
 //  PwSymbolKeyboard.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/10.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/10.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
 #import "PwSymbolKeyboard.h"
-#import "Constant.h"
+#import "KeyBoardConstant.h"
 @implementation PwSymbolKeyboard
 {
     NSMutableArray *_firArr;
@@ -30,7 +30,11 @@
 }
 - (void)getAllSymbols
 {
-    NSArray *letters =@[@"[",@"]",@"{",@"}",@"#",@"%",@"^",@"*",@"+",@"=",@"_",@"-",@"/",@":",@";",@"(",@")",@"$",@"&",@"@",@".",@",",@"?",@"!",@"'",@"",@"|",@"~",@"`",@"<",@">",@"n",@"m",@"",@""];
+//    NSArray *letters =@[@"[",@"]",@"{",@"}",@"#",@"%",@"^",@"*",@"+",@"=",@"_",@"-",@"/",@":",@";",@"(",@")",@"$",@"&",@"@",@".",@",",@"?",@"!",@"'",@"",@"|",@"~",@"`",@"<",@">",@"n",@"m",@"",@""];
+    NSArray *letters = @[@"[",@"]",@"{",@"}",@"#",@"%",@"^",@"*",@"+",@"=",
+                         @"_",@"-",@"/",@":",@";",@"(",@")",@"$",@"&",@"@",
+                         @".",@",",@"?",@"!",@"'",@"\\",@"|",@"~",@"`",
+                         @"<",@">",@"€",@"￡",@"￥",@"\"",@""];
     for (NSInteger i = 0; i < letters.count; i++) {
         if(i < 10)
         {
@@ -40,7 +44,7 @@
         {
             [_secArr addObject:letters[i]];
         }
-        else if(i < 28)
+        else if(i < 29)
         {
             [_thirArr addObject:letters[i]];
         }
@@ -57,7 +61,7 @@
     CGFloat yDistance = 10;
     CGFloat bottomBank = 5;
     CGFloat btnWidth = (DeviceWidth-5*(_firArr.count+1))/_firArr.count;
-    CGFloat btnHeight = (self.frame.size.height-yDistance*3-bottomBank)/4;
+    CGFloat btnHeight = (self.frame.size.height-yDistance*3-bottomBank - 40)/4;
     for (NSInteger i = 0; i < _firArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), 0, btnWidth, btnHeight) title:_firArr[i] contentView:self];
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -76,16 +80,27 @@
     }
     for (NSInteger i = 0; i < _forthArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), secBtnY*3, btnWidth, btnHeight) title:_forthArr[i] contentView:self];
+        if (i == _forthArr.count - 1) {
+//            btn.frame.size.width = btnWidth*2;
+            CGRect getBtnFrame = btn.frame;
+            getBtnFrame.size.width = btnWidth*2;
+            
+            btn.frame = getBtnFrame;
+            [btn setImage:[UIImage imageNamed:@"键盘-空格"] forState:UIControlStateNormal];
+//            btn.backgroundColor = [UIColor greenColor];
+        }
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
     }
     //删除键
-    UIButton *deleteBtn = [self configBtn:CGRectMake(xDistance+8*(xDistance+btnWidth), secBtnY*2, btnWidth*2+xDistance, btnHeight) title:@"delete" contentView:self];
-    deleteBtn.backgroundColor = [UIColor grayColor];
+    UIButton *deleteBtn = [self configBtn:CGRectMake(xDistance+9*(xDistance+btnWidth), secBtnY*2, btnWidth+xDistance, btnHeight) title:@"delete" contentView:self];
+    [deleteBtn setTitle:@"" forState:UIControlStateNormal];
+    [deleteBtn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
+    deleteBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
     [deleteBtn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     //确认键
-    UIButton *returnBtn = [self configBtn:CGRectMake(xDistance+7*(xDistance+btnWidth), secBtnY*3, btnWidth*3+xDistance*2, btnHeight) title:@"return" contentView:self];
-    returnBtn.backgroundColor = [UIColor grayColor];
+    UIButton *returnBtn = [self configBtn:CGRectMake(xDistance+8*(xDistance+btnWidth), secBtnY*3, btnWidth*2+xDistance*2, btnHeight) title:@"确认" contentView:self];
+    returnBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
     [returnBtn addTarget:self action:@selector(returnBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)symbolBtnClicked:(UIButton *)sender

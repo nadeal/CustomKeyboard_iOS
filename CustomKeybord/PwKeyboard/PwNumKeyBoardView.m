@@ -2,12 +2,12 @@
 //  PwNumKeyBoardView.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/10.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/10.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
 #import "PwNumKeyBoardView.h"
-#import "CustomButton.h"
+#import "KBCustomBtn.h"
 @implementation PwNumKeyBoardView
 {
     NSArray *_allNums;
@@ -32,24 +32,26 @@
 {
     _allNums = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"0"];
     _allSubTitles = @[@"",@"ABC",@"DEF",@"GHI",@"JKL",@"MNO",@"PQR",@"TUV",@"WXYZ",@""];
-//    _allNums = [_allNums sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-//        int seed = arc4random_uniform(2);
-//        if (seed) {
-//            return [obj1 compare:obj2];
-//        } else {
-//            return [obj2 compare:obj1];
-//        }
-//    }];
-//    for (NSInteger i = 0; i < _allNums.count; i++) {
-//        if(i < 8)
-//        {
-//            [_arr1 addObject:_allNums[i]];
-//        }
-//        else
-//        {
-//            [_arr2 addObject:_allNums[i]];
-//        }
-//    }
+    
+    //以下是随记排版数字 
+    _allNums = [_allNums sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        int seed = arc4random_uniform(2);
+        if (seed) {
+            return [obj1 compare:obj2];
+        } else {
+            return [obj2 compare:obj1];
+        }
+    }];
+    for (NSInteger i = 0; i < _allNums.count; i++) {
+        if(i < 8)
+        {
+            [_arr1 addObject:_allNums[i]];
+        }
+        else
+        {
+            [_arr2 addObject:_allNums[i]];
+        }
+    }
 }
 - (void)configNumKeyBoard
 {
@@ -60,12 +62,12 @@
     CGFloat bottomBank = 50;
     CGFloat yDistance = 10;
     CGFloat btnStartY = 0;
-    CGFloat btnHeight = (self.frame.size.height-btnStartY-bottomBank-yDistance*3)/4;
+    CGFloat btnHeight = (self.frame.size.height-btnStartY-bottomBank-yDistance*3 - 40)/4;
     for (NSInteger i = 0; i < 4; i++) {
         for (NSInteger j= 0; j < 3; j++) {
             CGFloat btnX = leftDiatance+j*(btnWidth+distance);
             CGFloat btnY = btnStartY+i*(btnHeight+yDistance);
-            CustomButton *btn = [[CustomButton alloc] initWithFrame:CGRectMake(btnX, btnY, btnWidth, btnHeight)];
+            KBCustomBtn *btn = [[KBCustomBtn alloc] initWithFrame:CGRectMake(btnX, btnY, btnWidth, btnHeight)];
 //            UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
 //            btn.buttonType = UIButtonTypeCustom;
             btn.layer.cornerRadius = 5;
@@ -76,12 +78,13 @@
             [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
             if(i == 3 && j == 0)
             {
-                [btn setTitle:@"delete" forState:UIControlStateNormal];
+//                [btn setTitle:@"delete" forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
             else if(i == 3 && j == 2)
             {
-                [btn setTitle:@"return" forState:UIControlStateNormal];
+                [btn setTitle:@"确认" forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(returnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
             else
@@ -94,7 +97,7 @@
     }
     [self reRankNum];
 }
-- (void)numBtnClicked:(CustomButton *)sender
+- (void)numBtnClicked:(KBCustomBtn *)sender
 {
     [self buttonBackGroundNormal:sender];
     if(self.btnClickedCallback)
@@ -102,7 +105,7 @@
         self.btnClickedCallback(sender.title);
     }
 }
-- (void)deleteBtnClicked:(CustomButton *)sender
+- (void)deleteBtnClicked:(KBCustomBtn *)sender
 {
     [self buttonBackGroundNormal:sender];
     if(self.deleteBtnClickedCallback)
@@ -110,7 +113,7 @@
         self.deleteBtnClickedCallback();
     }
 }
-- (void)returnBtnClicked:(CustomButton *)sender
+- (void)returnBtnClicked:(KBCustomBtn *)sender
 {
     [self buttonBackGroundNormal:sender];
     if(self.returnBtnClickedCallback)
@@ -118,7 +121,7 @@
         self.returnBtnClickedCallback();
     }
 }
-- (void)buttonBackGroundNormal:(CustomButton *)sender
+- (void)buttonBackGroundNormal:(KBCustomBtn *)sender
 {
     sender.backgroundColor = [UIColor whiteColor];
 }
@@ -130,9 +133,9 @@
 {
     [self getAllNums];
     for (NSInteger i = 0; i < _allNumBtns.count; i++) {
-        CustomButton *currentBtn = _allNumBtns[i];
+        KBCustomBtn *currentBtn = _allNumBtns[i];
         [currentBtn setTitle:_allNums[i]];
-        [currentBtn setSubTitle:_allSubTitles[i]];
+//        [currentBtn setSubTitle:_allSubTitles[i]];
     }
 }
 /*

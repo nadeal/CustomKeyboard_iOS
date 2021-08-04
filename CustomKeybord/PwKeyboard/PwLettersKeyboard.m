@@ -2,12 +2,12 @@
 //  PwLettersKeyboard.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/10.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/10.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
 #import "PwLettersKeyboard.h"
-#import "Constant.h"
+#import "KeyBoardConstant.h"
 
 @implementation PwLettersKeyboard
 {
@@ -55,7 +55,7 @@
     
     CGFloat xDistance = 5;
     CGFloat letterBtnWidth = (DeviceWidth-xDistance*(_firstArr.count+1))/_firstArr.count;
-    CGFloat btnHeight = (self.frame.size.height-bottomBank-yDistance*3)/4;
+    CGFloat btnHeight = (self.frame.size.height-bottomBank-yDistance*3 - 40)/4;
     for (NSInteger i = 0; i < _firstArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+letterBtnWidth), 0, letterBtnWidth, btnHeight) title:_firstArr[i] contentView:self];
         [btn addTarget:self action:@selector(letterBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -82,19 +82,25 @@
     }
     //大写键
     UIButton *upperBtn = [self configBtn:CGRectMake(xDistance, thiBtnY, seStartX+letterBtnWidth-xDistance, btnHeight) title:@"大写" contentView:self];
-    upperBtn.backgroundColor = [UIColor grayColor];
+    [upperBtn setTitle:@"" forState:UIControlStateNormal];
+    [upperBtn setImage:[UIImage imageNamed:@"键盘-大写"] forState:UIControlStateNormal];
+    upperBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
     [upperBtn addTarget:self action:@selector(upperBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     //删除键
     UIButton *deleteBtn = [self configBtn:CGRectMake(seStartX+8*(xDistance+letterBtnWidth), thiBtnY, seStartX+letterBtnWidth, btnHeight) title:@"删除" contentView:self];
-    deleteBtn.backgroundColor = [UIColor grayColor];
+    [deleteBtn setTitle:@"" forState:UIControlStateNormal];
+    [deleteBtn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
+    deleteBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
     [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     //空格键
     CGFloat spaceBtnWidth = seStartX+letterBtnWidth+6*(letterBtnWidth+xDistance)-xDistance;
     UIButton *spaceBtn = [self configBtn:CGRectMake(xDistance, seBtnY*3, spaceBtnWidth, btnHeight) title:@"   " contentView:self];
+    [spaceBtn setTitle:@"" forState:UIControlStateNormal];
+    [spaceBtn setImage:[UIImage imageNamed:@"键盘-空格"] forState:UIControlStateNormal];
     [spaceBtn addTarget:self action:@selector(letterBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [spaceBtn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
     //确认键
-    UIButton *returnBtn = [self configBtn:CGRectMake(seStartX+7*(xDistance+letterBtnWidth), seBtnY*3, seStartX+letterBtnWidth+xDistance+letterBtnWidth, btnHeight) title:@"return" contentView:self];
+    UIButton *returnBtn = [self configBtn:CGRectMake(seStartX+7*(xDistance+letterBtnWidth), seBtnY*3, seStartX+letterBtnWidth+xDistance+letterBtnWidth, btnHeight) title:@"确认" contentView:self];
     [returnBtn addTarget:self action:@selector(returnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [returnBtn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
 }

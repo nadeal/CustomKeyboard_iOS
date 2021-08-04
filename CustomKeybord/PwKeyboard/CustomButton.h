@@ -1,5 +1,5 @@
 //
-//  CustomButton.h
+//  KBCustomBtn.h
 //  CustomKeybord
 //
 //  Created by king on 2018/1/24.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomButton : UIButton
+@interface KBCustomBtn : UIButton
 @property(nonatomic, copy) NSString *title;
 @property(nonatomic, copy) NSString *subTitle;
 @end

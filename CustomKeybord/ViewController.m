@@ -2,8 +2,8 @@
 //  ViewController.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/9.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/9.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -27,12 +27,19 @@
     
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(15, 100, 300, 200)];
     self.textField.backgroundColor = [UIColor greenColor];
+    
+//    self.textField.inputView = keyboard;
+//    [self.textField becomeFirstResponder];
+    [self.view addSubview:self.textField];
+    // Do any additional setup after loading the view, typically from a nib.
+    
     PwCustomKeyboard *keyboard = [[PwCustomKeyboard alloc] initWithTextField:self.textField];
     keyboard.delegate = self;
     self.textField.inputView = keyboard;
-    [self.textField becomeFirstResponder];
-    [self.view addSubview:self.textField];
-    // Do any additional setup after loading the view, typically from a nib.
+//    keyboard.frame = CGRectMake(0, self.view.frame.size.height - 350, self.view.frame.size.width, 350);
+//    [keyboard show];
+//    [self.view addSubview:keyboard];
+    
 }
 #pragma mark - HJFCustomLoginKeyboardDelegate
 - (void)customKeyboardDidClickedReturn:(PwCustomKeyboard *)customKeyboard

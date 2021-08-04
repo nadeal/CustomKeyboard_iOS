@@ -2,14 +2,17 @@
 //  PwCustomKeyboard.m
 //  CustomKeybord
 //
-//  Created by king on 2018/1/9.
-//  Copyright © 2018年 king. All rights reserved.
+//  Created by Ketty on 2018/1/9.
+//  Copyright © 2018年 Ketty. All rights reserved.
 //
 
 #import "PwCustomKeyboard.h"
 #import "PwLettersKeyboard.h"
 #import "PwNumKeyBoardView.h"
 #import "PwSymbolKeyboard.h"
+
+
+
 typedef NS_ENUM(NSInteger, CustomKeyboardType)
 {
     CustomKeyboardType_Num  = 1,//数字
@@ -27,12 +30,13 @@ typedef NS_ENUM(NSInteger, CustomKeyboardType)
 @end
 
 @implementation PwCustomKeyboard
-static CGFloat keyY = 100;
+static CGFloat keyY = 50;
 - (instancetype)initWithTextView:(UITextView *)textView
 {
     self = [super init];
     if(self)
     {
+        
         self.textView = textView;
         [self viewInit];
     }
@@ -43,6 +47,7 @@ static CGFloat keyY = 100;
     self = [super init];
     if(self)
     {
+        self.frame = CGRectMake(0, G_SCREEN_H - 350, G_SCREEN_W, 350);
         self.textField = field;
         [self viewInit];
     }
@@ -56,26 +61,37 @@ static CGFloat keyY = 100;
     [self configLetterKeyboard];
     [self configSymbolKeyboard];
 }
+
 /**
   *  锁定键盘高度
   */
 - (void)setFrame:(CGRect)frame
 {
-    frame.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
+//    frame.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
+    frame = CGRectMake(0, G_SCREEN_H - 350, G_SCREEN_W, 350);
     [super setFrame:frame];
 }
 
 - (void)setBounds:(CGRect)bounds
 {
-    bounds.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
+//    bounds.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
     [super setBounds:bounds];
 }
 //创建三种键盘切换button
 - (void)configKeyboardType
 {
+    
+    UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 140, 40)];
+    tipLabel.backgroundColor = [UIColor clearColor];
+    tipLabel.text = @"优车库安全键盘";
+    tipLabel.textColor = [UIColor blackColor];
+    tipLabel.font = [UIFont systemFontOfSize:18];
+    [self addSubview:tipLabel];
+    
+    
     NSInteger btnTypeCount = 3;
     CGFloat btnWidth = (DeviceWidth/2)/btnTypeCount;
-    CGFloat btnHeight = 20;
+    CGFloat btnHeight = 40;
     NSArray *titles = @[@"数字",@"字母",@"符号"];
     for (NSInteger i = 0; i < btnTypeCount; i++)
     {
@@ -83,7 +99,8 @@ static CGFloat keyY = 100;
         btn.frame = CGRectMake((DeviceWidth/2)+i*btnWidth, 5, btnWidth, btnHeight);
         [btn setTitle:titles[i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
+        [btn setTitleColor:[UIColor colorWithRed:0.210 green:0.621 blue:0.846 alpha:1.00] forState:UIControlStateSelected];
+        btn.titleLabel.font = [UIFont systemFontOfSize:18];
         btn.tag = (CustomKeyboardType)i+1;
         if(i == 1)
         {

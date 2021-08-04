@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C1C9B34201839D700547192 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1C9B33201839D700547192 /* CustomButton.m */; };
-		3C831A302005AB9900B1736A /* PwNumKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C831A2F2005AB9900B1736A /* PwNumKeyBoardView.m */; };
-		3C831A342005B08100B1736A /* PwLettersKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C831A332005B08100B1736A /* PwLettersKeyboard.m */; };
-		3C831A372005C0AA00B1736A /* PwSymbolKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C831A362005C0AA00B1736A /* PwSymbolKeyboard.m */; };
-		3C831A3A2005CB9100B1736A /* PwKeyboardBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C831A392005CB9100B1736A /* PwKeyboardBaseView.m */; };
+		07079C9F26BA7F6000C0805D /* PwSymbolKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9326BA7F6000C0805D /* PwSymbolKeyboard.m */; };
+		07079CA026BA7F6000C0805D /* PwCustomKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9426BA7F6000C0805D /* PwCustomKeyboard.m */; };
+		07079CA126BA7F6000C0805D /* PwLettersKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9526BA7F6000C0805D /* PwLettersKeyboard.m */; };
+		07079CA226BA7F6000C0805D /* PwNumKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9726BA7F6000C0805D /* PwNumKeyBoardView.m */; };
+		07079CA326BA7F6000C0805D /* PwKeyboardBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9926BA7F6000C0805D /* PwKeyboardBaseView.m */; };
+		07079CA426BA7F6000C0805D /* KBCustomBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9B26BA7F6000C0805D /* KBCustomBtn.m */; };
 		3CF83F4E2004BFCC00EA19F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */; };
 		3CF83F512004BFCC00EA19F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F502004BFCC00EA19F1 /* ViewController.m */; };
 		3CF83F542004BFCC00EA19F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF83F522004BFCC00EA19F1 /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		3CF83F5C2004BFCC00EA19F1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F5B2004BFCC00EA19F1 /* main.m */; };
 		3CF83F662004BFCC00EA19F1 /* CustomKeybordTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F652004BFCC00EA19F1 /* CustomKeybordTests.m */; };
 		3CF83F712004BFCC00EA19F1 /* CustomKeybordUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F702004BFCC00EA19F1 /* CustomKeybordUITests.m */; };
-		3CF83F802004C0F200EA19F1 /* PwCustomKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F7F2004C0F200EA19F1 /* PwCustomKeyboard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,17 +41,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3C1C9B32201839D700547192 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
-		3C1C9B33201839D700547192 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
-		3C831A2E2005AB9900B1736A /* PwNumKeyBoardView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwNumKeyBoardView.h; sourceTree = "<group>"; };
-		3C831A2F2005AB9900B1736A /* PwNumKeyBoardView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwNumKeyBoardView.m; sourceTree = "<group>"; };
-		3C831A312005AC1600B1736A /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
-		3C831A322005B08100B1736A /* PwLettersKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwLettersKeyboard.h; sourceTree = "<group>"; };
-		3C831A332005B08100B1736A /* PwLettersKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwLettersKeyboard.m; sourceTree = "<group>"; };
-		3C831A352005C0AA00B1736A /* PwSymbolKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwSymbolKeyboard.h; sourceTree = "<group>"; };
-		3C831A362005C0AA00B1736A /* PwSymbolKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwSymbolKeyboard.m; sourceTree = "<group>"; };
-		3C831A382005CB9100B1736A /* PwKeyboardBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwKeyboardBaseView.h; sourceTree = "<group>"; };
-		3C831A392005CB9100B1736A /* PwKeyboardBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwKeyboardBaseView.m; sourceTree = "<group>"; };
+		07079C9226BA7F6000C0805D /* PwKeyboardBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwKeyboardBaseView.h; sourceTree = "<group>"; };
+		07079C9326BA7F6000C0805D /* PwSymbolKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwSymbolKeyboard.m; sourceTree = "<group>"; };
+		07079C9426BA7F6000C0805D /* PwCustomKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwCustomKeyboard.m; sourceTree = "<group>"; };
+		07079C9526BA7F6000C0805D /* PwLettersKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwLettersKeyboard.m; sourceTree = "<group>"; };
+		07079C9626BA7F6000C0805D /* KBCustomBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBCustomBtn.h; sourceTree = "<group>"; };
+		07079C9726BA7F6000C0805D /* PwNumKeyBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwNumKeyBoardView.m; sourceTree = "<group>"; };
+		07079C9826BA7F6000C0805D /* KeyBoardConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyBoardConstant.h; sourceTree = "<group>"; };
+		07079C9926BA7F6000C0805D /* PwKeyboardBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwKeyboardBaseView.m; sourceTree = "<group>"; };
+		07079C9A26BA7F6000C0805D /* PwSymbolKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwSymbolKeyboard.h; sourceTree = "<group>"; };
+		07079C9B26BA7F6000C0805D /* KBCustomBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBCustomBtn.m; sourceTree = "<group>"; };
+		07079C9C26BA7F6000C0805D /* PwNumKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwNumKeyBoardView.h; sourceTree = "<group>"; };
+		07079C9D26BA7F6000C0805D /* PwLettersKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwLettersKeyboard.h; sourceTree = "<group>"; };
+		07079C9E26BA7F6000C0805D /* PwCustomKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwCustomKeyboard.h; sourceTree = "<group>"; };
 		3CF83F492004BFCC00EA19F1 /* CustomKeybord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKeybord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF83F4C2004BFCC00EA19F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -68,8 +70,6 @@
 		3CF83F6C2004BFCC00EA19F1 /* CustomKeybordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomKeybordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF83F702004BFCC00EA19F1 /* CustomKeybordUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomKeybordUITests.m; sourceTree = "<group>"; };
 		3CF83F722004BFCC00EA19F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3CF83F7E2004C0F200EA19F1 /* PwCustomKeyboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwCustomKeyboard.h; sourceTree = "<group>"; };
-		3CF83F7F2004C0F200EA19F1 /* PwCustomKeyboard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwCustomKeyboard.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +97,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07079C9126BA7F6000C0805D /* PwKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				07079C9226BA7F6000C0805D /* PwKeyboardBaseView.h */,
+				07079C9926BA7F6000C0805D /* PwKeyboardBaseView.m */,
+				07079C9C26BA7F6000C0805D /* PwNumKeyBoardView.h */,
+				07079C9726BA7F6000C0805D /* PwNumKeyBoardView.m */,
+				07079C9A26BA7F6000C0805D /* PwSymbolKeyboard.h */,
+				07079C9326BA7F6000C0805D /* PwSymbolKeyboard.m */,
+				07079C9E26BA7F6000C0805D /* PwCustomKeyboard.h */,
+				07079C9426BA7F6000C0805D /* PwCustomKeyboard.m */,
+				07079C9D26BA7F6000C0805D /* PwLettersKeyboard.h */,
+				07079C9526BA7F6000C0805D /* PwLettersKeyboard.m */,
+				07079C9626BA7F6000C0805D /* KBCustomBtn.h */,
+				07079C9B26BA7F6000C0805D /* KBCustomBtn.m */,
+				07079C9826BA7F6000C0805D /* KeyBoardConstant.h */,
+			);
+			path = PwKeyboard;
+			sourceTree = "<group>";
+		};
 		3CF83F402004BFCC00EA19F1 = {
 			isa = PBXGroup;
 			children = (
@@ -120,23 +140,11 @@
 		3CF83F4B2004BFCC00EA19F1 /* CustomKeybord */ = {
 			isa = PBXGroup;
 			children = (
+				07079C9126BA7F6000C0805D /* PwKeyboard */,
 				3CF83F4C2004BFCC00EA19F1 /* AppDelegate.h */,
 				3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */,
 				3CF83F4F2004BFCC00EA19F1 /* ViewController.h */,
 				3CF83F502004BFCC00EA19F1 /* ViewController.m */,
-				3CF83F7E2004C0F200EA19F1 /* PwCustomKeyboard.h */,
-				3CF83F7F2004C0F200EA19F1 /* PwCustomKeyboard.m */,
-				3C831A322005B08100B1736A /* PwLettersKeyboard.h */,
-				3C831A332005B08100B1736A /* PwLettersKeyboard.m */,
-				3C831A2E2005AB9900B1736A /* PwNumKeyBoardView.h */,
-				3C831A2F2005AB9900B1736A /* PwNumKeyBoardView.m */,
-				3C831A352005C0AA00B1736A /* PwSymbolKeyboard.h */,
-				3C831A362005C0AA00B1736A /* PwSymbolKeyboard.m */,
-				3C1C9B32201839D700547192 /* CustomButton.h */,
-				3C1C9B33201839D700547192 /* CustomButton.m */,
-				3C831A382005CB9100B1736A /* PwKeyboardBaseView.h */,
-				3C831A392005CB9100B1736A /* PwKeyboardBaseView.m */,
-				3C831A312005AC1600B1736A /* Constant.h */,
 				3CF83F522004BFCC00EA19F1 /* Main.storyboard */,
 				3CF83F552004BFCC00EA19F1 /* Assets.xcassets */,
 				3CF83F572004BFCC00EA19F1 /* LaunchScreen.storyboard */,
@@ -297,15 +305,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C831A302005AB9900B1736A /* PwNumKeyBoardView.m in Sources */,
-				3CF83F802004C0F200EA19F1 /* PwCustomKeyboard.m in Sources */,
 				3CF83F512004BFCC00EA19F1 /* ViewController.m in Sources */,
-				3C1C9B34201839D700547192 /* CustomButton.m in Sources */,
-				3C831A342005B08100B1736A /* PwLettersKeyboard.m in Sources */,
 				3CF83F5C2004BFCC00EA19F1 /* main.m in Sources */,
-				3C831A3A2005CB9100B1736A /* PwKeyboardBaseView.m in Sources */,
+				07079CA026BA7F6000C0805D /* PwCustomKeyboard.m in Sources */,
+				07079CA426BA7F6000C0805D /* KBCustomBtn.m in Sources */,
+				07079CA126BA7F6000C0805D /* PwLettersKeyboard.m in Sources */,
 				3CF83F4E2004BFCC00EA19F1 /* AppDelegate.m in Sources */,
-				3C831A372005C0AA00B1736A /* PwSymbolKeyboard.m in Sources */,
+				07079CA326BA7F6000C0805D /* PwKeyboardBaseView.m in Sources */,
+				07079CA226BA7F6000C0805D /* PwNumKeyBoardView.m in Sources */,
+				07079C9F26BA7F6000C0805D /* PwSymbolKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,7 +477,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QP99DRZ3CS;
+				DEVELOPMENT_TEAM = GPNCPS9RXB;
 				INFOPLIST_FILE = CustomKeybord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -484,7 +492,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QP99DRZ3CS;
+				DEVELOPMENT_TEAM = GPNCPS9RXB;
 				INFOPLIST_FILE = CustomKeybord/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
