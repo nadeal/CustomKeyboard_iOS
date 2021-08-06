@@ -174,7 +174,7 @@ return[obj2compare:obj1];
 @property (nonatomic, assign) BOOL forbidClickedShow;
 
 /**
- 数字键盘是否每次使用都随记排布   默认固定数字键盘
+ 数字键盘是否每次使用都随机排布   默认固定数字键盘
  */
  
 @property (nonatomic, assign) BOOL allowRandomLayout;
