@@ -157,26 +157,31 @@ return[obj2compare:obj1];
 /**
  允许空格  默认不允许输入空格
  */
+ 
 @property (nonatomic, assign) BOOL allowSpace;
 
 /**
  不允许点击按键时，有变化颜色 默认点击按钮时会产生阴影
  */
+ 
 @property (nonatomic, assign) BOOL forbidClickedShow;
 
 /**
  数字键盘是否每次使用都随记排布   默认固定数字键盘
  */
+ 
 @property (nonatomic, assign) BOOL allowRandomLayout;
 
 /**
  仅支持特定键盘  字母  字符  数字
  */
+ 
 @property (nonatomic, assign) PWKeyboardType onlyKeyboardType;
 
 /**
  禁止某个键盘方式
  */
+ 
 @property (nonatomic, assign) PWKeyboardType forbidKeyBoardType;
 
 
@@ -186,7 +191,9 @@ return[obj2compare:obj1];
 代码比较简单，也不再多介绍
 
 ![IMG_3474](https://user-images.githubusercontent.com/9973605/128494459-89968c35-a59c-4439-bae7-e5832d28dd3d.jpg)
+
 ![IMG_3475](https://user-images.githubusercontent.com/9973605/128494462-64ee47be-540d-473b-9a0b-d41074fe4142.jpg)
+
 ![IMG_3476](https://user-images.githubusercontent.com/9973605/128494464-10a4735b-bf3c-4c22-b1ec-2df9d38a4f3a.jpg)
 
 
