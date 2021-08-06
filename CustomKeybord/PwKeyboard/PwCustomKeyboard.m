@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, CustomKeyboardType)
 @interface PwCustomKeyboard()
 {
     NSMutableArray *keyboardBtnArray;
-    
+    UILabel *safeTitleLabel;
 }
 
 /** 三种键盘样式---数字、字母、符号 */
@@ -72,14 +72,14 @@ static CGFloat keyY = 50;
 }
 
 -(void) willShowKeyboard:(NSNotification*) notify {
-    if (self.onlyType == OnlyKeyboardTypeNum) {
+    if (self.onlyKeyboardType == PWKeyboardTypeNum) {
         [self clickNumTypeBtn];
     }
 }
 
--(void) setOnlyType:(OnlyKeyboardType)onlyType {
-    _onlyType = onlyType;
-    [self typeBtnClicked:keyboardBtnArray[onlyType - 1]];
+-(void) setOnlyKeyboardType:(PWKeyboardType)onlyKeyboardType {
+    _onlyKeyboardType = onlyKeyboardType;
+    [self typeBtnClicked:keyboardBtnArray[onlyKeyboardType - 1]];
     for (UIButton *tempBtn in keyboardBtnArray) {
         tempBtn.hidden = YES;
     }
@@ -95,7 +95,7 @@ static CGFloat keyY = 50;
     
 }
 
--(void) setForbidKeyBoardType:(OnlyKeyboardType)forbidKeyBoardType {
+-(void) setForbidKeyBoardType:(PWKeyboardType)forbidKeyBoardType {
     _forbidKeyBoardType = forbidKeyBoardType;
     
     UIButton *getBtn = keyboardBtnArray[forbidKeyBoardType-1];
@@ -130,6 +130,14 @@ static CGFloat keyY = 50;
 //创建三种键盘切换button
 - (void)configKeyboardType
 {
+    
+    safeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 140, 40)];
+    safeTitleLabel.backgroundColor = [UIColor clearColor];
+    safeTitleLabel.text = @"安全键盘";
+    safeTitleLabel.textColor = [UIColor blackColor];
+    safeTitleLabel.font = [UIFont systemFontOfSize:18];
+    [self addSubview:safeTitleLabel];
+    
     
     NSInteger btnTypeCount = 3;
     CGFloat btnWidth = (DeviceWidth/2)/btnTypeCount;

@@ -35,10 +35,10 @@
     
     PwCustomKeyboard *keyboard = [[PwCustomKeyboard alloc] initWithTextField:self.textField];
     keyboard.delegate = self;
+//    keyboard.onlyKeyboardType = PWKeyboardTypeNum;
+//    keyboard.allowRandomLayout = YES;
+    keyboard.forbidKeyBoardType = PWKeyboardTypeLetters;
     self.textField.inputView = keyboard;
-//    keyboard.frame = CGRectMake(0, self.view.frame.size.height - 350, self.view.frame.size.width, 350);
-//    [keyboard show];
-//    [self.view addSubview:keyboard];
     
 }
 #pragma mark - HJFCustomLoginKeyboardDelegate

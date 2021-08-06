@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, OnlyKeyboardType) {
-    OnlyKeyboardTypeNum = 1,
-    OnlyKeyboardTypeLetters = 2,//字母
-    OnlyKeyboardTypeSymbol = 3//字符
+typedef NS_ENUM(NSInteger, PWKeyboardType) {
+    PWKeyboardTypeNum = 1,
+    PWKeyboardTypeLetters = 2,//字母
+    PWKeyboardTypeSymbol = 3//字符
 };
 
 @class PwCustomKeyboard;
@@ -48,12 +48,12 @@ typedef NS_ENUM(NSInteger, OnlyKeyboardType) {
 /**
  仅支持特定键盘  字母  字符  数字
  */
-@property (nonatomic, assign) OnlyKeyboardType onlyType;
+@property (nonatomic, assign) PWKeyboardType onlyKeyboardType;
 
 /**
  禁止某个键盘方式
  */
-@property (nonatomic, assign) OnlyKeyboardType forbidKeyBoardType;
+@property (nonatomic, assign) PWKeyboardType forbidKeyBoardType;
 
 @property (nonatomic, weak) id<CustomKeyboardDelegate> delegate;
 @end
