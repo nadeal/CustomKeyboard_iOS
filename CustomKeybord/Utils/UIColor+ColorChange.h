@@ -1,9 +1,8 @@
 //
 //  UIColor+ColorChange.h
-//  优车库
 //
-//  Created by Youcku on 2018/7/9.
-//  Copyright © 2018年 Billy Pang. All rights reserved.
+//  Created by Nadeal on 2018/7/9.
+//  Copyright © 2018年 Nadeal Pang. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
