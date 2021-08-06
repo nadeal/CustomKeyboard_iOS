@@ -15,6 +15,8 @@
     NSMutableArray *_arr1;
     NSMutableArray *_arr2;
     NSMutableArray *_allNumBtns;
+    
+    UIButton *delBtn, *confirmBtn;
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -36,6 +38,18 @@
     if (self.allowRandomLayout) {
         [self randomNum];
     }
+}
+
+-(void) setForbidClickedShow:(BOOL)forbidClickedShow {
+    _forbidClickedShow = forbidClickedShow;
+    if (_forbidClickedShow) {
+        for (UIButton *tempBtn in _allNumBtns) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+        [delBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        [confirmBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+    }
+    
 }
 
 -(void) randomNum {
@@ -93,14 +107,15 @@
             [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
             if(i == 3 && j == 0)
             {
-//                [btn setTitle:@"delete" forState:UIControlStateNormal];
                 [btn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                delBtn = btn;
             }
             else if(i == 3 && j == 2)
             {
                 [btn setTitle:@"确认" forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(returnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                confirmBtn = btn;
             }
             else
             {

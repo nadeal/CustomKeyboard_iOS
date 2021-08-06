@@ -92,7 +92,19 @@ static CGFloat keyY = 50;
             _numKeyboard.allowRandomLayout = allowRandomLayout;
         }
     }
-    
+}
+
+-(void) setForbidClickedShow:(BOOL)forbidClickedShow {
+    _forbidClickedShow = forbidClickedShow;
+    if (_numKeyboard) {
+        _numKeyboard.forbidClickedShow = forbidClickedShow;
+    }
+    if (_letterKeyboard) {
+        _letterKeyboard.forbidClickedShow = forbidClickedShow;
+    }
+    if (_symbolKeyboard) {
+        _symbolKeyboard.forbidClickedShow = forbidClickedShow;
+    }
 }
 
 -(void) setForbidKeyBoardType:(PWKeyboardType)forbidKeyBoardType {
@@ -127,6 +139,7 @@ static CGFloat keyY = 50;
 //    bounds.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
     [super setBounds:bounds];
 }
+
 //创建三种键盘切换button
 - (void)configKeyboardType
 {

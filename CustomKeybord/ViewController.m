@@ -32,6 +32,7 @@
     
     PwCustomKeyboard *keyboard = [[PwCustomKeyboard alloc] initWithTextField:self.textField];
     keyboard.delegate = self;
+    keyboard.forbidClickedShow = YES;
 //    keyboard.onlyKeyboardType = PWKeyboardTypeNum;
 //    keyboard.allowRandomLayout = YES;
 //    keyboard.forbidKeyBoardType = PWKeyboardTypeLetters;

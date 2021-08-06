@@ -9,12 +9,16 @@
 #import "PwLettersKeyboard.h"
 #import "KeyBoardConstant.h"
 
+
 @implementation PwLettersKeyboard
 {
     NSMutableArray *_firstArr;
     NSMutableArray *_seArr;
     NSMutableArray *_thiArr;
     NSMutableArray *_letterBtns;
+    
+    UIButton *delBtn, *confirmBtn, *spaceBtn;
+    
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -29,6 +33,19 @@
     }
     return self;
 }
+
+-(void) setForbidClickedShow:(BOOL)forbidClickedShow {
+    _forbidClickedShow = forbidClickedShow;
+    if (_forbidClickedShow) {
+        for (UIButton *tempBtn in _letterBtns) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+        [delBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        [confirmBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        [spaceBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+    }
+}
+
 - (void)getAllLetters
 {
     NSArray *letters = @[@"q",@"w",@"e",@"r",@"t",@"y",@"u",@"i",@"o",@"p",@"a",@"s",@"d",@"f",@"g",@"h",@"j",@"k",@"l",@"z",@"x",@"c",@"v",@"b",@"n",@"m"];
@@ -87,22 +104,22 @@
     upperBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
     [upperBtn addTarget:self action:@selector(upperBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     //删除键
-    UIButton *deleteBtn = [self configBtn:CGRectMake(seStartX+8*(xDistance+letterBtnWidth), thiBtnY, seStartX+letterBtnWidth, btnHeight) title:@"删除" contentView:self];
-    [deleteBtn setTitle:@"" forState:UIControlStateNormal];
-    [deleteBtn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
-    deleteBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
-    [deleteBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    delBtn = [self configBtn:CGRectMake(seStartX+8*(xDistance+letterBtnWidth), thiBtnY, seStartX+letterBtnWidth, btnHeight) title:@"删除" contentView:self];
+    [delBtn setTitle:@"" forState:UIControlStateNormal];
+    [delBtn setImage:[UIImage imageNamed:@"键盘-删除"] forState:UIControlStateNormal];
+    delBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
+    [delBtn addTarget:self action:@selector(deleteBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     //空格键
     CGFloat spaceBtnWidth = seStartX+letterBtnWidth+6*(letterBtnWidth+xDistance)-xDistance;
-    UIButton *spaceBtn = [self configBtn:CGRectMake(xDistance, seBtnY*3, spaceBtnWidth, btnHeight) title:@"   " contentView:self];
+    spaceBtn = [self configBtn:CGRectMake(xDistance, seBtnY*3, spaceBtnWidth, btnHeight) title:@"   " contentView:self];
     [spaceBtn setTitle:@"" forState:UIControlStateNormal];
     [spaceBtn setImage:[UIImage imageNamed:@"键盘-空格"] forState:UIControlStateNormal];
     [spaceBtn addTarget:self action:@selector(letterBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     [spaceBtn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
     //确认键
-    UIButton *returnBtn = [self configBtn:CGRectMake(seStartX+7*(xDistance+letterBtnWidth), seBtnY*3, seStartX+letterBtnWidth+xDistance+letterBtnWidth, btnHeight) title:@"确认" contentView:self];
-    [returnBtn addTarget:self action:@selector(returnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [returnBtn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
+    confirmBtn = [self configBtn:CGRectMake(seStartX+7*(xDistance+letterBtnWidth), seBtnY*3, seStartX+letterBtnWidth+xDistance+letterBtnWidth, btnHeight) title:@"确认" contentView:self];
+    [confirmBtn addTarget:self action:@selector(returnBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [confirmBtn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
 }
 - (void)letterBtnClicked:(UIButton *)sender
 {

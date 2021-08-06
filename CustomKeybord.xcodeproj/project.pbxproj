@@ -13,6 +13,7 @@
 		07079CA226BA7F6000C0805D /* PwNumKeyBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9726BA7F6000C0805D /* PwNumKeyBoardView.m */; };
 		07079CA326BA7F6000C0805D /* PwKeyboardBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9926BA7F6000C0805D /* PwKeyboardBaseView.m */; };
 		07079CA426BA7F6000C0805D /* KBCustomBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 07079C9B26BA7F6000C0805D /* KBCustomBtn.m */; };
+		07F7F99826BD3B87006357FB /* UIColor+ColorChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F7F99626BD3B87006357FB /* UIColor+ColorChange.m */; };
 		3CF83F4E2004BFCC00EA19F1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */; };
 		3CF83F512004BFCC00EA19F1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CF83F502004BFCC00EA19F1 /* ViewController.m */; };
 		3CF83F542004BFCC00EA19F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3CF83F522004BFCC00EA19F1 /* Main.storyboard */; };
@@ -54,6 +55,8 @@
 		07079C9C26BA7F6000C0805D /* PwNumKeyBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwNumKeyBoardView.h; sourceTree = "<group>"; };
 		07079C9D26BA7F6000C0805D /* PwLettersKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwLettersKeyboard.h; sourceTree = "<group>"; };
 		07079C9E26BA7F6000C0805D /* PwCustomKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwCustomKeyboard.h; sourceTree = "<group>"; };
+		07F7F99626BD3B87006357FB /* UIColor+ColorChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorChange.m"; sourceTree = "<group>"; };
+		07F7F99726BD3B87006357FB /* UIColor+ColorChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorChange.h"; sourceTree = "<group>"; };
 		3CF83F492004BFCC00EA19F1 /* CustomKeybord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomKeybord.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CF83F4C2004BFCC00EA19F1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,6 +120,15 @@
 			path = PwKeyboard;
 			sourceTree = "<group>";
 		};
+		07F7F99526BD3B87006357FB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				07F7F99626BD3B87006357FB /* UIColor+ColorChange.m */,
+				07F7F99726BD3B87006357FB /* UIColor+ColorChange.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		3CF83F402004BFCC00EA19F1 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +152,7 @@
 		3CF83F4B2004BFCC00EA19F1 /* CustomKeybord */ = {
 			isa = PBXGroup;
 			children = (
+				07F7F99526BD3B87006357FB /* Utils */,
 				07079C9126BA7F6000C0805D /* PwKeyboard */,
 				3CF83F4C2004BFCC00EA19F1 /* AppDelegate.h */,
 				3CF83F4D2004BFCC00EA19F1 /* AppDelegate.m */,
@@ -306,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF83F512004BFCC00EA19F1 /* ViewController.m in Sources */,
+				07F7F99826BD3B87006357FB /* UIColor+ColorChange.m in Sources */,
 				3CF83F5C2004BFCC00EA19F1 /* main.m in Sources */,
 				07079CA026BA7F6000C0805D /* PwCustomKeyboard.m in Sources */,
 				07079CA426BA7F6000C0805D /* KBCustomBtn.m in Sources */,

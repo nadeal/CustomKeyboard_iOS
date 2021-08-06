@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "PwKeyboardBaseView.h"
 @interface PwLettersKeyboard : PwKeyboardBaseView
-
+@property (nonatomic, assign) BOOL forbidClickedShow;
 @end

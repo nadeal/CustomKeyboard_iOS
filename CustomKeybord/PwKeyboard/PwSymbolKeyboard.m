@@ -14,6 +14,11 @@
     NSMutableArray *_secArr;
     NSMutableArray *_thirArr;
     NSMutableArray *_forthArr;
+    
+    NSMutableArray *_firBtnArr;
+    NSMutableArray *_secBtnArr;
+    NSMutableArray *_thirBtnArr;
+    NSMutableArray *_forthBtnArr;
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -28,6 +33,25 @@
     }
     return self;
 }
+
+-(void) setForbidClickedShow:(BOOL)forbidClickedShow {
+    _forbidClickedShow = forbidClickedShow;
+    if (_forbidClickedShow) {
+        for (UIButton *tempBtn in _firBtnArr) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+        for (UIButton *tempBtn in _secBtnArr) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+        for (UIButton *tempBtn in _thirBtnArr) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+        for (UIButton *tempBtn in _forthBtnArr) {
+            [tempBtn setBackgroundImage:[UIColor createImageWithColor:[UIColor whiteColor]] forState:UIControlStateHighlighted];
+        }
+    }
+}
+
 - (void)getAllSymbols
 {
 //    NSArray *letters =@[@"[",@"]",@"{",@"}",@"#",@"%",@"^",@"*",@"+",@"=",@"_",@"-",@"/",@":",@";",@"(",@")",@"$",@"&",@"@",@".",@",",@"?",@"!",@"'",@"",@"|",@"~",@"`",@"<",@">",@"n",@"m",@"",@""];
@@ -62,35 +86,42 @@
     CGFloat bottomBank = 5;
     CGFloat btnWidth = (DeviceWidth-5*(_firArr.count+1))/_firArr.count;
     CGFloat btnHeight = (self.frame.size.height-yDistance*3-bottomBank - 40)/4;
+    _firBtnArr = [NSMutableArray array];
+    _secBtnArr = [NSMutableArray array];
+    _thirBtnArr = [NSMutableArray array];
+    _forthBtnArr = [NSMutableArray array];
+    
     for (NSInteger i = 0; i < _firArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), 0, btnWidth, btnHeight) title:_firArr[i] contentView:self];
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
+        [_firBtnArr addObject:btn];
     }
     CGFloat secBtnY = yDistance+btnHeight;
     for (NSInteger i = 0; i < _secArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), secBtnY, btnWidth, btnHeight) title:_secArr[i] contentView:self];
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
+        [_secBtnArr addObject:btn];
     }
     for (NSInteger i = 0; i < _thirArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), secBtnY*2, btnWidth, btnHeight) title:_thirArr[i] contentView:self];
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
+        [_thirBtnArr addObject:btn];
     }
     for (NSInteger i = 0; i < _forthArr.count; i++) {
         UIButton *btn = [self configBtn:CGRectMake(xDistance+i*(xDistance+btnWidth), secBtnY*3, btnWidth, btnHeight) title:_forthArr[i] contentView:self];
         if (i == _forthArr.count - 1) {
-//            btn.frame.size.width = btnWidth*2;
             CGRect getBtnFrame = btn.frame;
             getBtnFrame.size.width = btnWidth*2;
             
             btn.frame = getBtnFrame;
             [btn setImage:[UIImage imageNamed:@"键盘-空格"] forState:UIControlStateNormal];
-//            btn.backgroundColor = [UIColor greenColor];
         }
         [btn addTarget:self action:@selector(symbolBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [btn addTarget:self action:@selector(buttonBackGroundHighlighted:) forControlEvents:UIControlEventTouchDown];
+        [_forthBtnArr addObject:btn];
     }
     //删除键
     UIButton *deleteBtn = [self configBtn:CGRectMake(xDistance+9*(xDistance+btnWidth), secBtnY*2, btnWidth+xDistance, btnHeight) title:@"delete" contentView:self];

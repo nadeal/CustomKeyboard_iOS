@@ -17,4 +17,6 @@
  */
 @property (nonatomic, assign) BOOL allowRandomLayout;
 
+@property (nonatomic, assign) BOOL forbidClickedShow;
+
 @end
