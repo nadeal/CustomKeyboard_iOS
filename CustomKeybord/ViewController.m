@@ -27,9 +27,6 @@
     
     self.textField = [[UITextField alloc] initWithFrame:CGRectMake(15, 100, 300, 200)];
     self.textField.backgroundColor = [UIColor greenColor];
-    
-//    self.textField.inputView = keyboard;
-//    [self.textField becomeFirstResponder];
     [self.view addSubview:self.textField];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -37,7 +34,7 @@
     keyboard.delegate = self;
 //    keyboard.onlyKeyboardType = PWKeyboardTypeNum;
 //    keyboard.allowRandomLayout = YES;
-    keyboard.forbidKeyBoardType = PWKeyboardTypeLetters;
+//    keyboard.forbidKeyBoardType = PWKeyboardTypeLetters;
     self.textField.inputView = keyboard;
     
 }
