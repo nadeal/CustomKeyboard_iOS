@@ -1,7 +1,6 @@
 # CustomKeyboard_iOS
 近日项目需求，需要做自定义键盘，因为项目对安全性能要求较高，所以摒弃了系统键盘和一系列的第三方键盘，仿照工商银行app的键盘写了一个自定义键盘的demo，因为之前有很多的前辈留下足迹，所以做起来也不是很费力，在这里要感谢所有知识分享者，我不是巨人，我只是知识的搬运工，言归正传，在本demo里面，键盘布局并没有使用xib和storyboard，纯代码布局，至于因为什么。。。。。。我想你懂得！先来看一下效果图，请自动忽略比较丑的样子，主要看实现思路
 想让UITextView弹出自己的键盘而不是系统键盘其实很简单，只需要一句代码即可
-
 self.textView.inputView= keyboard;
 
 剩下的就是自定义键盘view，分几个部分：
@@ -152,6 +151,45 @@ return[obj2compare:obj1];
 
 }];
 
+3、自由配置键盘
+通过属性配置仅支持单一键盘
+
+/**
+ 允许空格  默认不允许输入空格
+ */
+@property (nonatomic, assign) BOOL allowSpace;
+
+/**
+ 不允许点击按键时，有变化颜色 默认点击按钮时会产生阴影
+ */
+@property (nonatomic, assign) BOOL forbidClickedShow;
+
+/**
+ 数字键盘是否每次使用都随记排布   默认固定数字键盘
+ */
+@property (nonatomic, assign) BOOL allowRandomLayout;
+
+/**
+ 仅支持特定键盘  字母  字符  数字
+ */
+@property (nonatomic, assign) PWKeyboardType onlyKeyboardType;
+
+/**
+ 禁止某个键盘方式
+ */
+@property (nonatomic, assign) PWKeyboardType forbidKeyBoardType;
+
+
+
 思路就是将所有的数字、字母、符号全装在一个数组之中，再按行来拆分成若干数组，作为按钮标题
 
 代码比较简单，也不再多介绍
+
+
+
+![IMG_3471](https://user-images.githubusercontent.com/9973605/128493498-dd394006-fc75-4d04-97f3-b8c0c7f41bea.PNG)
+
+![IMG_3472](https://user-images.githubusercontent.com/9973605/128493525-3448d86e-8d8a-4ae6-8c9d-8787065e6fe5.PNG)
+
+![IMG_3473](https://user-images.githubusercontent.com/9973605/128493549-fc7fb597-7440-41fe-9bd7-c016e670f1d4.PNG)
+
