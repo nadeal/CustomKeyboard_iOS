@@ -100,7 +100,7 @@
     [deleteBtn addTarget:self action:@selector(deleteBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     //确认键
     UIButton *returnBtn = [self configBtn:CGRectMake(xDistance+8*(xDistance+btnWidth), secBtnY*3, btnWidth*2+xDistance*2, btnHeight) title:@"确认" contentView:self];
-    returnBtn.backgroundColor = KBColorFromRGB(0xE5E5E5);//[UIColor grayColor];
+    returnBtn.backgroundColor = [UIColor whiteColor];
     [returnBtn addTarget:self action:@selector(returnBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 - (void)symbolBtnClicked:(UIButton *)sender

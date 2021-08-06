@@ -20,9 +20,11 @@ typedef NS_ENUM(NSInteger, CustomKeyboardType)
     CustomKeyboardType_Symbol  = 3//符号
 };
 @interface PwCustomKeyboard()
-/** 需要操作的textView */
-@property(nonatomic, strong) UITextView *textView;
-@property(nonatomic, strong) UITextField *textField;
+{
+    NSMutableArray *keyboardBtnArray;
+    
+}
+
 /** 三种键盘样式---数字、字母、符号 */
 @property(nonatomic, strong) PwLettersKeyboard *letterKeyboard;
 @property(nonatomic, strong) PwNumKeyBoardView *numKeyboard;
@@ -36,10 +38,15 @@ static CGFloat keyY = 50;
     self = [super init];
     if(self)
     {
-        
+        keyboardBtnArray = [NSMutableArray array];
         self.textView = textView;
         [self viewInit];
     }
+#ifndef DEBUG
+    if (TARGET_IPHONE_SIMULATOR) {
+        abort();
+    }
+#endif
     return self;
 }
 - (instancetype)initWithTextField:(UITextField *)field
@@ -47,6 +54,7 @@ static CGFloat keyY = 50;
     self = [super init];
     if(self)
     {
+        keyboardBtnArray = [NSMutableArray array];
         self.frame = CGRectMake(0, G_SCREEN_H - 350, G_SCREEN_W, 350);
         self.textField = field;
         [self viewInit];
@@ -60,6 +68,48 @@ static CGFloat keyY = 50;
     [self configNumKeyBoard];
     [self configLetterKeyboard];
     [self configSymbolKeyboard];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willShowKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+-(void) willShowKeyboard:(NSNotification*) notify {
+    if (self.onlyType == OnlyKeyboardTypeNum) {
+        [self clickNumTypeBtn];
+    }
+}
+
+-(void) setOnlyType:(OnlyKeyboardType)onlyType {
+    _onlyType = onlyType;
+    [self typeBtnClicked:keyboardBtnArray[onlyType - 1]];
+    for (UIButton *tempBtn in keyboardBtnArray) {
+        tempBtn.hidden = YES;
+    }
+}
+
+-(void) setAllowRandomLayout:(BOOL)allowRandomLayout {
+    _allowRandomLayout = allowRandomLayout;
+    if (allowRandomLayout) {
+        if (_numKeyboard != nil) {
+            _numKeyboard.allowRandomLayout = allowRandomLayout;
+        }
+    }
+    
+}
+
+-(void) setForbidKeyBoardType:(OnlyKeyboardType)forbidKeyBoardType {
+    _forbidKeyBoardType = forbidKeyBoardType;
+    
+    UIButton *getBtn = keyboardBtnArray[forbidKeyBoardType-1];
+    [getBtn removeFromSuperview];
+    [keyboardBtnArray removeObject:getBtn];
+    [self typeBtnClicked:keyboardBtnArray[0]];
+    
+    CGFloat btnWidth = getBtn.frame.size.width;
+    for (int i = 0; i < keyboardBtnArray.count; i ++) {
+        UIButton *tempBtn = keyboardBtnArray[i];
+        CGRect getFrame = tempBtn.frame;
+        getFrame.origin.x = (DeviceWidth/2)+(i + 1)*btnWidth;
+        tempBtn.frame = getFrame;
+    }
 }
 
 /**
@@ -81,7 +131,6 @@ static CGFloat keyY = 50;
 - (void)configKeyboardType
 {
     
-    
     NSInteger btnTypeCount = 3;
     CGFloat btnWidth = (DeviceWidth/2)/btnTypeCount;
     CGFloat btnHeight = 40;
@@ -95,14 +144,16 @@ static CGFloat keyY = 50;
         [btn setTitleColor:[UIColor colorWithRed:0.210 green:0.621 blue:0.846 alpha:1.00] forState:UIControlStateSelected];
         btn.titleLabel.font = [UIFont systemFontOfSize:18];
         btn.tag = (CustomKeyboardType)i+1;
-        if(i == 1)
-        {
-            //默认字母键盘
-            btn.selected = YES;
-        }
+//        if(i == 1)
+//        {
+//            //默认字母键盘
+//            btn.selected = YES;
+//        }
         [btn addTarget:self action:@selector(typeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
+        [keyboardBtnArray addObject:btn];
     }
+    [self typeBtnClicked:keyboardBtnArray[1]];
 }
 //点击切换键盘
 - (void)typeBtnClicked:(UIButton *)sender
@@ -140,10 +191,29 @@ static CGFloat keyY = 50;
     self.letterKeyboard = [[PwLettersKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
     WS(weakSelf, self);
     [self.letterKeyboard setBtnClickedCallback:^(NSString *str) {
+        if (!weakSelf.allowSpace && [str containsString:@" "]) {
+            return;
+        }
         [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
+            if (!isOk) {
+                NSString *tempStr = weakSelf.textField.text;
+                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            }
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.letterKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:@""];
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.letterKeyboard setReturnBtnClickedCallback:^{
         if([weakSelf.delegate respondsToSelector:@selector(customKeyboardDidClickedReturn:)])
@@ -157,12 +227,32 @@ static CGFloat keyY = 50;
 - (void)configNumKeyBoard
 {
     self.numKeyboard = [[PwNumKeyBoardView alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
+    self.numKeyboard.allowRandomLayout = self.allowRandomLayout;
     WS(weakSelf, self);
     [self.numKeyboard setBtnClickedCallback:^(NSString *str) {
+        if (!weakSelf.allowSpace && [str containsString:@" "]) {
+            return;
+        }
         [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
+            if (!isOk) {
+                NSString *tempStr = weakSelf.textField.text;
+                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            }
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.numKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:@""];
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.numKeyboard setReturnBtnClickedCallback:^{
         if([weakSelf.delegate respondsToSelector:@selector(customKeyboardDidClickedReturn:)])
@@ -177,10 +267,29 @@ static CGFloat keyY = 50;
     self.symbolKeyboard = [[PwSymbolKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
     WS(weakSelf, self);
     [self.symbolKeyboard setBtnClickedCallback:^(NSString *str) {
+        if (!weakSelf.allowSpace && [str containsString:@" "]) {
+            return;
+        }
         [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
+            if (!isOk) {
+                NSString *tempStr = weakSelf.textField.text;
+                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            }
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.symbolKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
+        if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
+            NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
+            [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:@""];
+        } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
+            [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+        }
     }];
     [self.symbolKeyboard setReturnBtnClickedCallback:^{
         if([weakSelf.delegate respondsToSelector:@selector(customKeyboardDidClickedReturn:)])

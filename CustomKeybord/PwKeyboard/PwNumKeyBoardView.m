@@ -33,7 +33,13 @@
     _allNums = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"0"];
     _allSubTitles = @[@"",@"ABC",@"DEF",@"GHI",@"JKL",@"MNO",@"PQR",@"TUV",@"WXYZ",@""];
     
-    //以下是随记排版数字 
+    if (self.allowRandomLayout) {
+        [self randomNum];
+    }
+}
+
+-(void) randomNum {
+    //以下是随记排版数字
     _allNums = [_allNums sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         int seed = arc4random_uniform(2);
         if (seed) {
@@ -53,6 +59,15 @@
         }
     }
 }
+
+-(void) setAllowRandomLayout:(BOOL)allowRandomLayout {
+    _allowRandomLayout = allowRandomLayout;
+    if (allowRandomLayout) {
+        [self reRankNum];
+    }
+}
+
+
 - (void)configNumKeyBoard
 {
     [self getAllNums];
@@ -135,7 +150,6 @@
     for (NSInteger i = 0; i < _allNumBtns.count; i++) {
         KBCustomBtn *currentBtn = _allNumBtns[i];
         [currentBtn setTitle:_allNums[i]];
-//        [currentBtn setSubTitle:_allSubTitles[i]];
     }
 }
 /*

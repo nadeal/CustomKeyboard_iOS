@@ -11,4 +11,10 @@
 #import "PwKeyboardBaseView.h"
 @interface PwNumKeyBoardView : PwKeyboardBaseView
 - (void)reRankNum;
+
+/**
+ 数字键盘是否每次使用都随记排布   默认固定数字键盘
+ */
+@property (nonatomic, assign) BOOL allowRandomLayout;
+
 @end
