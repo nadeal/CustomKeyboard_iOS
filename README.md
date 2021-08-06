@@ -5,6 +5,13 @@ self.textView.inputView= keyboard;
 
 剩下的就是自定义键盘view，分几个部分：
 
+![IMG_3474](https://user-images.githubusercontent.com/9973605/128495152-3e41bca7-3c94-454d-b8f5-7eb701fa14da.jpg)
+
+![IMG_3475](https://user-images.githubusercontent.com/9973605/128495167-ad6f9a44-b3fd-473d-9605-6033e9b7e63f.jpg)
+
+![IMG_3476](https://user-images.githubusercontent.com/9973605/128495171-92534c19-669a-46f5-9e05-66b44f4a39f3.jpg)
+
+
 1、键盘类型切换按钮布局
 
 //创建三种键盘切换button
@@ -190,11 +197,6 @@ return[obj2compare:obj1];
 
 代码比较简单，也不再多介绍
 
-![IMG_3474](https://user-images.githubusercontent.com/9973605/128494459-89968c35-a59c-4439-bae7-e5832d28dd3d.jpg)
-
-![IMG_3475](https://user-images.githubusercontent.com/9973605/128494462-64ee47be-540d-473b-9a0b-d41074fe4142.jpg)
-
-![IMG_3476](https://user-images.githubusercontent.com/9973605/128494464-10a4735b-bf3c-4c22-b1ec-2df9d38a4f3a.jpg)
 
 
 
