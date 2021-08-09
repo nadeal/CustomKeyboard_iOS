@@ -12,6 +12,12 @@
 
 #define IS_IPHONE6_PLUS ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone && [UIScreen mainScreen].bounds.size.height == 736 || [UIScreen mainScreen].bounds.size.width == 736)
 #define AUTO_ADAPT_SIZE_VALUE(iPhone4_5, iPhone6, iPhone6plus) (IS_IPHONE6 ? iPhone6 : (IS_IPHONE6_PLUS ? iPhone6plus : iPhone4_5))
+
+
+#define G_StatusBarHeight ([[UIApplication sharedApplication] statusBarFrame].size.height)
+#define G_IS_iPhoneX (G_StatusBarHeight > 20.0f)
+#define G_SpaceBottomHeight      (G_IS_iPhoneX ? 34.f : 0)
+
 #define DeviceWidth [UIScreen mainScreen].bounds.size.width
 #define DeviceHeight [UIScreen mainScreen].bounds.size.height
 //防止循环引用，弱化对象
