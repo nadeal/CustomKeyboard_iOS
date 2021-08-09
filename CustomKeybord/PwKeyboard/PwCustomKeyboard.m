@@ -219,14 +219,14 @@ static CGFloat keyY = 50;
         if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
             NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
             BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
-            if (!isOk) {
-                NSString *tempStr = weakSelf.textField.text;
-                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            if (isOk) {
+                [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
             }
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
         }
-        [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
+        
     }];
     [self.letterKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
@@ -259,14 +259,14 @@ static CGFloat keyY = 50;
         if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
             NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
             BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
-            if (!isOk) {
-                NSString *tempStr = weakSelf.textField.text;
-                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            if (isOk) {
+                [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
             }
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
         }
-        [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
+        
     }];
     [self.numKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
@@ -297,14 +297,14 @@ static CGFloat keyY = 50;
         if (weakSelf.textField && [weakSelf.textField.delegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
             NSRange getRange = NSMakeRange(weakSelf.textField.text.length, 0);
             BOOL isOk = [weakSelf.textField.delegate textField:weakSelf.textField shouldChangeCharactersInRange:getRange replacementString:str];
-            if (!isOk) {
-                NSString *tempStr = weakSelf.textField.text;
-                weakSelf.textField.text = [tempStr substringToIndex:(getRange.location - 1)];
+            if (isOk) {
+                [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
             }
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
         }
-        [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
+        
     }];
     [self.symbolKeyboard setDeleteBtnClickedCallback:^{
         [weakSelf.textView?weakSelf.textView:weakSelf.textField deleteBackward];
