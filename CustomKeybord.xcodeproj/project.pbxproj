@@ -123,8 +123,8 @@
 		07F7F99526BD3B87006357FB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				07F7F99626BD3B87006357FB /* UIColor+ColorChange.m */,
 				07F7F99726BD3B87006357FB /* UIColor+ColorChange.h */,
+				07F7F99626BD3B87006357FB /* UIColor+ColorChange.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
