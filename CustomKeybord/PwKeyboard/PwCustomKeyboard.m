@@ -225,6 +225,8 @@ static CGFloat keyY = 50;
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
             [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
+        } else {
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
         }
         
     }];
@@ -265,6 +267,8 @@ static CGFloat keyY = 50;
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
             [weakSelf.textView?weakSelf.textView:weakSelf.textField  insertText:str];
+        } else {
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
         }
         
     }];
@@ -302,6 +306,8 @@ static CGFloat keyY = 50;
             }
         } else if (weakSelf.textView && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidChange:)]) {
             [weakSelf.textView.delegate textViewDidChange:weakSelf.textView];
+            [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
+        } else {
             [weakSelf.textView?weakSelf.textView:weakSelf.textField insertText:str];
         }
         
