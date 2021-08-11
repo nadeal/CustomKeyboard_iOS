@@ -38,7 +38,18 @@
 //    keyboard.forbidKeyBoardType = PWKeyboardTypeSymbol;
     self.textField.inputView = keyboard;
     
+    UIButton *tempBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 40, 80, 40)];
+    tempBtn.backgroundColor = [UIColor grayColor];
+    [tempBtn setTitle:@"收起键盘" forState:UIControlStateNormal];
+    tempBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [tempBtn addTarget:self action:@selector(onTempBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:tempBtn];
 }
+
+-(void) onTempBtnPressed {
+    [self.textField resignFirstResponder];
+}
+
 #pragma mark - HJFCustomLoginKeyboardDelegate
 - (void)customKeyboardDidClickedReturn:(PwCustomKeyboard *)customKeyboard
 {

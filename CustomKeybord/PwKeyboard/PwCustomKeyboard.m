@@ -55,7 +55,7 @@ static CGFloat keyY = 50;
     if(self)
     {
         keyboardBtnArray = [NSMutableArray array];
-        self.frame = CGRectMake(0, G_SCREEN_H - 350, G_SCREEN_W, 350);
+        self.frame = CGRectMake(0, 0, G_SCREEN_W, 300 + G_SpaceBottomHeight);
         self.textField = field;
         [self viewInit];
     }
@@ -130,7 +130,7 @@ static CGFloat keyY = 50;
 - (void)setFrame:(CGRect)frame
 {
 //    frame.size.height = 350;//AUTO_ADAPT_SIZE_VALUE(233, 253, 283);
-    frame = CGRectMake(0, G_SCREEN_H - 350, G_SCREEN_W, 350);
+    frame = CGRectMake(0, 0, G_SCREEN_W, 300 + G_SpaceBottomHeight);
     [super setFrame:frame];
 }
 
@@ -187,29 +187,34 @@ static CGFloat keyY = 50;
     UIButton *btn_let = [self viewWithTag:CustomKeyboardType_Letters];
     UIButton *btn_sym = [self viewWithTag:CustomKeyboardType_Symbol];
     sender.selected = YES;
+    CGRect tempRect = self.frame;
     if(sender == btn_num)
     {
         btn_let.selected = NO;
         btn_sym.selected = NO;
         [self clickNumTypeBtn];
+        tempRect.size.height = 100;
     }
     if(sender == btn_let)
     {
         btn_num.selected = NO;
         btn_sym.selected = NO;
         [self clickLetterTypeBtn];
+        tempRect.size.height = 300;
     }
     if(sender == btn_sym)
     {
         btn_num.selected = NO;
         btn_let.selected = NO;
         [self clickSymbleTypeBtn];
+        tempRect.size.height = 300;
     }
+    self.frame = tempRect;
 }
 //创建字母键盘
 - (void)configLetterKeyboard
 {
-    self.letterKeyboard = [[PwLettersKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
+    self.letterKeyboard = [[PwLettersKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-G_SpaceBottomHeight)];
     WS(weakSelf, self);
     [self.letterKeyboard setBtnClickedCallback:^(NSString *str) {
         if (!weakSelf.allowSpace && [str containsString:@" "]) {
@@ -250,7 +255,7 @@ static CGFloat keyY = 50;
 //创建数字键盘
 - (void)configNumKeyBoard
 {
-    self.numKeyboard = [[PwNumKeyBoardView alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
+    self.numKeyboard = [[PwNumKeyBoardView alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-G_SpaceBottomHeight)];
     self.numKeyboard.allowRandomLayout = self.allowRandomLayout;
     WS(weakSelf, self);
     [self.numKeyboard setBtnClickedCallback:^(NSString *str) {
@@ -291,7 +296,7 @@ static CGFloat keyY = 50;
 //创建符号键盘
 - (void)configSymbolKeyboard
 {
-    self.symbolKeyboard = [[PwSymbolKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-keyY)];
+    self.symbolKeyboard = [[PwSymbolKeyboard alloc] initWithFrame:CGRectMake(0, keyY, DeviceWidth, self.frame.size.height-G_SpaceBottomHeight)];
     WS(weakSelf, self);
     [self.symbolKeyboard setBtnClickedCallback:^(NSString *str) {
         if (!weakSelf.allowSpace && [str containsString:@" "]) {
